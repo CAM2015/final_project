@@ -7,8 +7,11 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { filter } from 'rxjs/operators';
 import { SchoolsService } from '../../shared/schools.service';
-import { Subscription } from 'rxjs';
 import { MenuController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
+import { FavoriteStore } from '../../shared/school-favorite.store';
+import { Subscription } from 'rxjs';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-schools',
@@ -17,10 +20,12 @@ import { MenuController } from '@ionic/angular';
 })
 export class SchoolsPage implements OnInit {
   isLoading = false;
-  // schools: Observable<Schools[]>;
-  // primary: Observable<Schools[]>;
-  // secondary: Observable<Schools[]>;
-  segment = 'two';
+  favSchools: any = {};
+  favSchoolSub: Subscription;
+  loader: any;
+
+  segment = 'primarySchool';
+  school: Schools[];
   loadedPrimarySchools: any[];
   primaryGoalList: any[];
   primarySub: Subscription;
@@ -29,45 +34,56 @@ export class SchoolsPage implements OnInit {
   secondaryGoalList: any[];
   secondarySub: Subscription;
 
-
-  constructor(private service: SchoolsService,
+  constructor(public loadingController: LoadingController,
+              private favoriteStore: FavoriteStore,
               private afs: AngularFirestore,
-              private menuCtrl: MenuController) { }
+              private menuCtrl: MenuController) {
+        // stores our favorite schools
+        this.favSchoolSub = this.favoriteStore.favSchools.subscribe(
+                (favSchools: any) => {
+                  this.favSchools = favSchools;
+        });
+               }
 
-  ngOnInit() {
+  async presentLoading() {
+    const loader = await this.loadingController.create({
+      spinner: null,
+      duration: 3500,
+      message: 'Loading...',
+      translucent: true,
+    });
+    return await loader.present();
+  }
+
+ ngOnInit() {
+      this.loader = this.presentLoading();
      // we get schools from observable through this subscribe
       this.primarySub = this.afs.collection('primary').valueChanges().subscribe(primaryData => {
       this.primaryGoalList = primaryData;
       // back-up data array
       this.loadedPrimarySchools = this.primaryGoalList;
       console.log('primaryGoalList', this.primaryGoalList);
-
-
+    });
+      // we get schools from observable through this subscribe
       this.secondarySub = this.afs.collection('secondary').valueChanges().subscribe(secondaryData => {
         this.secondaryGoalList = secondaryData;
+        // back-up data array
         this.loadedSecondarySchools = this.secondaryGoalList;
+
         console.log('loadedSecondarySchools', this.loadedSecondarySchools);
-      });
     });
+  }
 
+  ionViewDidLeave() {
+    if (this.favSchoolSub && !this.favSchoolSub.closed) {
+      this.favSchoolSub.unsubscribe();
+    }
+  }
 
-    // this.isLoading = true;
-    //   // query for retrieving a collection from firestore; Using Angular Fire APIs
-    // this.schools = this.service.loadAllSchools();
-    // this.isLoading = false;
-    // console.log('this.schools', this.schools);
-
-
-    // this.primary = this.schools.pipe(
-    //   map(s => s.filter(
-    //     schools => schools.school_Level.includes('Primary'))));
-    // // console.log('this.primary', this.primary);
-
-    // this.secondary = this.schools.pipe(
-    //   map(s => s.filter(
-    //     schools => schools.school_Level.includes('Secondary'))));
-    // // console.log('this.secondary', this.secondary);
-
+  // checks if the school is already favorite
+  isSchoolFavorite(seqNo: number): boolean {
+    const school = this.favSchools[seqNo];
+    return school ? true : false;
   }
 
     // initialize the back-up data array
@@ -150,6 +166,10 @@ export class SchoolsPage implements OnInit {
 
   onSegmentChange(event: CustomEvent<SegmentChangeEventDetail>) {
     console.log(event.detail);
+  }
+
+  favoriteSchool(school: Schools) {
+    this.favoriteStore.toggleSchool(school);
   }
 
   // tslint:disable-next-line:use-life-cycle-interface

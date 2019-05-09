@@ -12,4 +12,5 @@ export interface Schools {
     completion_Prog: string;
     activities: string [];
     favorite: boolean;
+    seqNo: number;
 }

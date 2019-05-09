@@ -24,6 +24,11 @@ export class AppComponent {
       icon: 'school'
     },
     {
+      title: 'My Favourites',
+      url: '/favourite',
+      icon: 'star'
+    },
+    {
       title: 'What Parents are Saying',
       url: '/blog',
       icon: 'contacts'

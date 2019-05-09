@@ -17,6 +17,10 @@ const routes: Routes = [
     loadChildren: './home/home.module#HomePageModule',
     canLoad: [AuthGuard]
   },
+  { path: 'favourite',
+    loadChildren: './favourite/favourite.module#FavouritePageModule',
+    canLoad: [AuthGuard]
+  },
   {
     path: 'blog',
     loadChildren: './blog/blog.module#BlogPageModule',

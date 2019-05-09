@@ -9,11 +9,11 @@
     </ion-toolbar>
   </ion-header>
 
-<ion-content>
+<ion-content padding>
     <ion-list-header text-center>
-  <ion-segment  [(ngModel)]="segment" (ionChange)="onSegmentChange($event)">
-    <ion-segment-button value="primary" checked>Primary</ion-segment-button>
-    <ion-segment-button value="secondary" >Secondary</ion-segment-button>
+  <ion-segment  [(ngModel)]="segment" (ionChange)="onSegmentChange($event)" color="primary">
+    <ion-segment-button  color="primary" value="primarySchool" checked>Primary</ion-segment-button>
+    <ion-segment-button color="primary" value="secondarySchool" >Secondary</ion-segment-button>
   </ion-segment>
 </ion-list-header>
   <ion-grid>
@@ -21,42 +21,61 @@
       <ion-col size="12" size-sm="8" offset-sm="2" text-center>
         <div [ngSwitch]="segment">
           <div>       
-            <ion-list *ngSwitchCase="'primary'">
+            <ion-list *ngSwitchCase="'primarySchool'">
               <ion-searchbar (ionChange)="filterPrimaryList($event)" animated></ion-searchbar>
                 <ion-card *ngFor="let school of primaryGoalList"> 
-                  <ion-card-header>
-                    <ion-icon color="primary" name="bookmark" class="like-icon"></ion-icon> 
+                  <ion-card-header >
+                     
+                    <ion-icon (click)="favoriteSchool(school)" 
+                            [ngClass]="school.favorite ? 'favorite' : 'normal'" 
+                             name="bookmark"  class="like-icon">
+                    </ion-icon>
                     <ion-card-title><strong>{{ school.name }}</strong></ion-card-title>
-                    <ion-card-subtitle>Status {{ school.mixed_Status }} </ion-card-subtitle>
+                    <ion-card-subtitle> {{ school.mixed_Status }} School </ion-card-subtitle>
                   </ion-card-header>
                   <ion-card-content>
-                    <p><strong>Address: </strong>{{  school.address1 }}, {{  school.address2 }}, {{  school.address3 }} </p>
-                    <p><strong>Fee: </strong> {{  school.fee_paying }} </p>
-                    <p><strong>Completion Program: </strong> {{  school.completion_Prog }} </p> 
-                    <p><strong>Phone:  </strong> {{  school.phone }} </p> 
-                    <p><strong>Phone:  </strong> {{  school.website }} </p> 
-                    <p><strong>Activities </strong> {{  school.activities }} </p> 
+                    <h4><strong>Address: </strong></h4>
+                      <p>{{ school.address1 }}, {{ school.address2 }}, {{ school.address3 }} </p>
+                    <h4><strong>Fee: </strong></h4>
+                      <p>{{ school.fee_paying }} </p>
+                    <h4><strong>Completion Program: </strong></h4>
+                      <p>{{ school.completion_Prog }} </p> 
+                      <h4><strong>Phone:  </strong></h4>
+                    <p>{{ school.phone }} </p> 
+                    <h4><strong>Phone:  </strong></h4>
+                    <p>{{ school.website }} </p> 
+                    <h4><strong>Activities </strong></h4>
+                    <p>{{ school.activities }} </p> 
                   </ion-card-content>                                                    
                 </ion-card>  
             </ion-list>
           </div>
           <div>
-            <ion-list *ngSwitchCase="'secondary'">
+            <ion-list *ngSwitchCase="'secondarySchool'">
               <ion-searchbar (ionChange)="filterSecondaryList($event)" animated></ion-searchbar>
                 <ion-card *ngFor="let school of secondaryGoalList"> 
-                  <ion-card-header>
-                    <ion-icon color="primary" name="bookmark" class="like-icon"></ion-icon> 
+                  <ion-card-header >
+                    <ion-icon (click)="favoriteSchool(school)" 
+                              [ngClass]="school.favorite ? 'favorite' : 'normal'" 
+                               name="bookmark"  class="like-icon">
+                    </ion-icon> 
                     <ion-card-title><strong>{{ school.name }}</strong></ion-card-title>
-                    <ion-card-subtitle>Status {{ school.mixed_Status }} </ion-card-subtitle>
+                    <ion-card-subtitle> {{ school.mixed_Status }}  School</ion-card-subtitle>
                   </ion-card-header>
                   <ion-card-content>
-                    <p><strong>Address: </strong>{{  school.address1 }}, {{  school.address2 }}, {{  school.address3 }} </p>
-                    <p><strong>Fee: </strong> {{  school.fee_paying }} </p>
-                    <p><strong>Completion Program: </strong> {{  school.completion_Prog }} </p>                   
-                    <p><strong>Phone:  </strong> {{  school.phone }} </p> 
-                    <p><strong>Phone:  </strong> {{  school.website }} </p> 
-                    <p><strong>Activities </strong> {{  school.activities }} </p> 
-                  </ion-card-content>                                                   
+                    <h4><strong>Address: </strong></h4>
+                      <p>{{ school.address1 }}, {{ school.address2 }}, {{ school.address3 }} </p>
+                    <h4><strong>Fee: </strong></h4>
+                      <p>{{ school.fee_paying }} </p>
+                    <h4><strong>Completion Program: </strong></h4>
+                      <p>{{ school.completion_Prog }} </p> 
+                    <h4><strong>Phone:  </strong></h4>
+                      <p>{{ school.phone }} </p> 
+                    <h4><strong>Phone:  </strong></h4>
+                      <p>{{ school.website }} </p> 
+                    <h4><strong>Activities </strong></h4>
+                      <p>{{ school.activities }} </p> 
+                    </ion-card-content>                                                  
                 </ion-card>  
             </ion-list>
           </div>

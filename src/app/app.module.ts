@@ -11,6 +11,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
+import { IonicStorageModule } from '@ionic/storage';
+import { FavoriteStore } from './shared/school-favorite.store';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +20,7 @@ import { environment } from 'src/environments/environment';
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
+    IonicStorageModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase, 'sss'),
     AngularFirestoreModule,
     AppRoutingModule
@@ -26,6 +29,7 @@ import { environment } from 'src/environments/environment';
     StatusBar,
     SplashScreen,
     AngularFirestoreModule,
+    FavoriteStore,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

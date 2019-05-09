@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      My Favourites
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding text-center>
+  <ion-grid>
+    <ion-row>
+    <ion-col size="12" size-sm="8" offset-sm="2" text-center>
+    <ion-list  >
+      <ion-card [routerLink]="" *ngFor="let school of favSchoolsList"> 
+        <ion-card-header >
+          <ion-card-title><strong>{{ school.name }}</strong></ion-card-title>
+          <ion-card-subtitle> {{ school.mixed_Status }} | School</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <h4><strong>Address: </strong></h4>
+            <p>{{ school.address1 }}, {{ school.address2 }}, {{ school.address3 }} </p>
+          <h4><strong>Fee: </strong></h4>
+            <p>{{ school.fee_paying }} </p>
+          <h4><strong>Completion Program: </strong></h4>
+            <p>{{ school.completion_Prog }} </p> 
+            <h4><strong>Phone:  </strong></h4>
+          <p>{{ school.phone }} </p> 
+          <h4><strong>Phone:  </strong></h4>
+          <p>{{ school.website }} </p> 
+          <h4><strong>Activities </strong></h4>
+          <p>{{ school.activities }} </p> 
+        </ion-card-content>                                                    
+      </ion-card>  
+    </ion-list>
+    </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
