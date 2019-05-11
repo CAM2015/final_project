@@ -13,7 +13,9 @@ export class FavouritePage {
   favSchoolSub: Subscription;
   favSchoolsList: Schools[] = [];
 
-  constructor(private favoriteStore: FavoriteStore) {
+  constructor(private favoriteStore: FavoriteStore) {}
+
+  ionViewWillEnter() {
     // stores our favorite schools
     this.favSchoolSub = this.favoriteStore.favSchools.subscribe(
       (favSchools: any) => {
@@ -29,7 +31,7 @@ export class FavouritePage {
   }
 
   // transforms favorite card object to favorite card list
-  // gets every id of every school object, lops over and just filters and gets the school, 
+  // gets every id of every school object, lops over and just filters and gets the school,
   // returns the list and assigns to favSchoolsList
    private getFavoriteSchoolList(favSchools: any): Schools[] {
     if (favSchools) {

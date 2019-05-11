@@ -13,6 +13,9 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 import { IonicStorageModule } from '@ionic/storage';
 import { FavoriteStore } from './shared/school-favorite.store';
+import { Firebase } from '@ionic-native/firebase/ngx';
+import { FcmService } from './shared/fcm.service';
+import { ToastService } from './shared/toast.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,7 +32,10 @@ import { FavoriteStore } from './shared/school-favorite.store';
     StatusBar,
     SplashScreen,
     AngularFirestoreModule,
+    Firebase,
     FavoriteStore,
+    FcmService,
+    ToastService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

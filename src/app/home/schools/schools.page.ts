@@ -12,6 +12,8 @@ import { Storage } from '@ionic/storage';
 import { FavoriteStore } from '../../shared/school-favorite.store';
 import { Subscription } from 'rxjs';
 import { LoadingController } from '@ionic/angular';
+import { Firebase } from '@ionic-native/firebase/ngx';
+import { ToastService } from 'src/app/shared/toast.service';
 
 @Component({
   selector: 'app-schools',
@@ -35,6 +37,8 @@ export class SchoolsPage implements OnInit {
   secondarySub: Subscription;
 
   constructor(public loadingController: LoadingController,
+              private toast: ToastService,
+              private firebase: Firebase,
               private favoriteStore: FavoriteStore,
               private afs: AngularFirestore,
               private menuCtrl: MenuController) {

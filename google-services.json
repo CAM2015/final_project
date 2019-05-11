@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "295837198276",
+    "firebase_url": "https://smart-school-search-2dbf3.firebaseio.com",
+    "project_id": "smart-school-search-2dbf3",
+    "storage_bucket": "smart-school-search-2dbf3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:295837198276:android:764d2cb7da3280eb",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "295837198276-1tjeb692111m94vn14282q2migdefkes.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7TsaHYvXhfd8XrsQybS0sCX40ONb4g5E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "295837198276-1tjeb692111m94vn14282q2migdefkes.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "295837198276-v0sphl9e6j33604appepp1ti4k13ajkl.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.camelia.sss"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

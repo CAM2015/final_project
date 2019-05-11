@@ -25,11 +25,6 @@
               <ion-searchbar (ionChange)="filterPrimaryList($event)" animated></ion-searchbar>
                 <ion-card *ngFor="let school of primaryGoalList"> 
                   <ion-card-header >
-                     
-                    <ion-icon (click)="favoriteSchool(school)" 
-                            [ngClass]="school.favorite ? 'favorite' : 'normal'" 
-                             name="bookmark"  class="like-icon">
-                    </ion-icon>
                     <ion-card-title><strong>{{ school.name }}</strong></ion-card-title>
                     <ion-card-subtitle> {{ school.mixed_Status }} School </ion-card-subtitle>
                   </ion-card-header>
@@ -46,6 +41,11 @@
                     <p>{{ school.website }} </p> 
                     <h4><strong>Activities </strong></h4>
                     <p>{{ school.activities }} </p> 
+                    <ion-button size="small" shape="round" shape="round"
+                    (click)="favoriteSchool(school)"
+                    [ngClass]="school.favorite ? 'favorite' : 'normal'"  >
+                    Add to favorite
+                  </ion-button>
                   </ion-card-content>                                                    
                 </ion-card>  
             </ion-list>
@@ -75,6 +75,11 @@
                       <p>{{ school.website }} </p> 
                     <h4><strong>Activities </strong></h4>
                       <p>{{ school.activities }} </p> 
+                      <ion-button size="small" shape="round" shape="round"
+                      (click)="favoriteSchool(school)"
+                      [ngClass]="school.favorite ? 'favorite' : 'normal'"  >
+                      Add to favorite
+                    </ion-button>
                     </ion-card-content>                                                  
                 </ion-card>  
             </ion-list>
