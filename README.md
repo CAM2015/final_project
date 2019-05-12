@@ -1,12 +1,14 @@
 Smart School Search
 
 To run the application in the browser:
-- on command-line navigate to the root of the application: /sss
-- run: npm install
-- run: ng serve
+On the command-line, navigate to the root of the application: '/sss'
+- run: 'npm install'
+- run: 'ng serve'
 
 To simulate a mobile viewport: right click -> Inspect -> 
 Click: Toggle Device Toolbar
+
+
 
 References:
 
@@ -18,4 +20,4 @@ The following online Udemy courses have served as a guide, on building this appl
 (Created by Maximilian Schwarzmüller)
 
 - Firebase Masterclass
-(Created by Angular University/ Angular University/ Vasco)
+(Created by Angular University)
