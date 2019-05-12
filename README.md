@@ -5,5 +5,5 @@ To run the application in the browser:
 - run: npm install
 - run: ng serve
 
-To simulate a mobile viewport: right click -> Inspect 
-Click Toggle Device Toolbar
+To simulate a mobile viewport: right click -> Inspect -> 
+Click: Toggle Device Toolbar
