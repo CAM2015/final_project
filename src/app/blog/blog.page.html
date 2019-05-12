@@ -9,6 +9,105 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
- 
+<ion-content padding>
+  <ion-title text-center><h5>Tell your story...</h5></ion-title>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-sm="8" offset-sm="2" text-center>
+        <ion-row margin class="rowStyle">
+          <button ion-button icon-only color="primary" clear (click)="addPhoto()">
+              <ion-icon color="primary" slot="start"  name="images"></ion-icon>
+          </button>
+          <ion-input type="text" placeholder="Say something..." [(ngModel)]="text"></ion-input>
+
+          <button ion-button icon-only color="primary" clear (click)="post()">
+              <ion-icon color="primary" slot="start"  name="send"></ion-icon>
+          </button>
+        </ion-row>
+        <ion-row margin class="rowStyle">
+
+        </ion-row>
+        <ion-refresher (ionRefresh)="refresh($event)">
+          <ion-refresher-content></ion-refresher-content>
+        </ion-refresher>
+        <ion-card>
+          <ion-item-divider><h4>Emma says</h4></ion-item-divider>
+          <ion-item text-wrap>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo odit aliquam itaque doloremque culpa, deleniti, aspernatur sed eos necessitatibus vero officia sunt! 
+          </ion-item>
+          <ion-row class="bottom-bar">
+            <ion-col>
+              <button ion-button block icon-left clear small color="primary" class="border-right" (click)="like(post)">
+                <ion-icon color="primary" slot="start"  name="thumbs-up"></ion-icon>
+                <small>Likes</small>
+              </button>
+            </ion-col>
+            <ion-col>
+              <button ion-button block icon-left clear small color="primary" class="border-right" (click)="comment(post)">
+                  <ion-icon color="primary" slot="start"  name="text"></ion-icon>
+                <small>Comments</small>
+              </button>
+            </ion-col>
+            <ion-col>
+              <button ion-button block icon-left clear small color="primary">
+                <small>3 days ago</small>
+              </button>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+        <ion-row></ion-row>
+        <ion-card>
+            <ion-item-divider><h4>Amy says</h4></ion-item-divider>
+            <ion-item text-wrap>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo odit aliquam itaque doloremque culpa, deleniti, aspernatur sed eos necessitatibus vero officia sunt! 
+            </ion-item>
+            <ion-row class="bottom-bar">
+              <ion-col>
+                <button ion-button block icon-left clear small color="primary" class="border-right" (click)="like(post)">
+                    <ion-icon color="primary" slot="start"  name="thumbs-up"></ion-icon>
+                  <small>Likes</small>
+                </button>
+              </ion-col>
+              <ion-col>
+                <button ion-button block icon-left clear small color="primary" class="border-right" (click)="comment(post)">
+                    <ion-icon color="primary" slot="start"  name="text"></ion-icon>
+                  <small>Comments</small>
+                </button>
+              </ion-col>
+              <ion-col>
+                <button ion-button block icon-left clear small color="primary">
+                  <small>3 days ago</small>
+                </button>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+          <ion-row></ion-row>
+          <ion-card>
+              <ion-item-divider><h4>Tom says</h4></ion-item-divider>
+              <ion-item text-wrap>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo odit aliquam itaque doloremque culpa, deleniti, aspernatur sed eos necessitatibus vero officia sunt! 
+              </ion-item>
+              <ion-row class="bottom-bar">
+                <ion-col>
+                  <button ion-button block icon-left clear small color="primary" class="border-right" (click)="like(post)">
+                      <ion-icon color="primary" slot="start"  name="thumbs-up"></ion-icon>
+                    <small>Likes</small>
+                  </button>
+                </ion-col>
+                <ion-col>
+                  <button ion-button block icon-left clear small color="primary" class="border-right" (click)="comment(post)">
+                      <ion-icon color="primary" slot="start"  name="text"></ion-icon>
+                    <small>Comments</small>
+                  </button>
+                </ion-col>
+                <ion-col>
+                  <button ion-button block icon-left clear small color="primary">
+                    <small>3 days ago</small>
+                  </button>
+                </ion-col>
+              </ion-row>
+            </ion-card>
+            <ion-infinite-scroll (ionInfinite)="loadMorePosts($event)">
+              <ion-infinite-scroll-content></ion-infinite-scroll-content>
+            </ion-infinite-scroll>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

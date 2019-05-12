@@ -24,6 +24,10 @@ import { ToastService } from './shared/toast.service';
     BrowserModule,
     IonicModule.forRoot(),
     IonicStorageModule.forRoot(),
+    // IonicStorageModule.forRoot({
+    //   name: '__mydb',
+    //   driverOrder: ['indexeddb', 'sqlite', 'websql']
+    // }),
     AngularFireModule.initializeApp(environment.firebase, 'sss'),
     AngularFirestoreModule,
     AppRoutingModule

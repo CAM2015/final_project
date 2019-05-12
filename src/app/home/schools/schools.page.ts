@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 import { filter } from 'rxjs/operators';
 import { SchoolsService } from '../../shared/schools.service';
 import { MenuController } from '@ionic/angular';
-import { Storage } from '@ionic/storage';
+import { Storage} from '@ionic/storage';
 import { FavoriteStore } from '../../shared/school-favorite.store';
 import { Subscription } from 'rxjs';
 import { LoadingController } from '@ionic/angular';
@@ -39,15 +39,32 @@ export class SchoolsPage implements OnInit {
   constructor(public loadingController: LoadingController,
               private toast: ToastService,
               private firebase: Firebase,
+              private storage: Storage,
               private favoriteStore: FavoriteStore,
               private afs: AngularFirestore,
               private menuCtrl: MenuController) {
         // stores our favorite schools
-        this.favSchoolSub = this.favoriteStore.favSchools.subscribe(
-                (favSchools: any) => {
-                  this.favSchools = favSchools;
-        });
-               }
+        // this.favSchoolSub = this.favoriteStore.favSchools.subscribe(
+        //         (favSchools: any) => {
+        //           this.favSchools = favSchools;
+        // });
+
+        // subscribe to the favourite schools
+        // this.favSchoolSub = this.favoriteStore.favSchools.subscribe(
+        //   (favSchools: any) => {
+        //     this.favSchools = favSchools;
+        //   });
+
+        // this.storage.get('favSchools').then((favSchools) => {
+        //   this.favSchools = favSchools || {};
+        // });
+  }
+  // unsubscribe from favorite schools
+  // ionViewDidLeave() {
+  //   if (this.favSchoolSub && !this.favSchoolSub.closed) {
+  //     this.favSchoolSub.unsubscribe();
+  //   }
+  // }
 
   async presentLoading() {
     const loader = await this.loadingController.create({
@@ -77,18 +94,12 @@ export class SchoolsPage implements OnInit {
         console.log('loadedSecondarySchools', this.loadedSecondarySchools);
     });
   }
+   // checks if the school is already favorite
+  // private isSchoolFavorite(seqNo: number): boolean {
+  //   const school = this.favSchools[seqNo];
+  //   return school ? true : false;
+  // }
 
-  ionViewDidLeave() {
-    if (this.favSchoolSub && !this.favSchoolSub.closed) {
-      this.favSchoolSub.unsubscribe();
-    }
-  }
-
-  // checks if the school is already favorite
-  isSchoolFavorite(seqNo: number): boolean {
-    const school = this.favSchools[seqNo];
-    return school ? true : false;
-  }
 
     // initialize the back-up data array
   initializePrimary(): void {
@@ -177,12 +188,12 @@ export class SchoolsPage implements OnInit {
   }
 
   // tslint:disable-next-line:use-life-cycle-interface
-  ngOnDestroy() {
-    if (this.primarySub ) {
-      this.primarySub.unsubscribe();
-    }
-    if (this.secondarySub) {
-      this.secondarySub.unsubscribe();
-    }
-  }
+  // ngOnDestroy() {
+  //   if (this.primarySub ) {
+  //     this.primarySub.unsubscribe();
+  //   }
+  //   if (this.secondarySub) {
+  //     this.secondarySub.unsubscribe();
+  //   }
+  // }
 }
