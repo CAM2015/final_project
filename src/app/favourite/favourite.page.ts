@@ -13,15 +13,19 @@ export class FavouritePage {
   favSchoolSub: Subscription;
   favSchoolsList: Schools[] = [];
 
-  constructor(private favoriteStore: FavoriteStore) {
-         // subscribe to the favourite schools
-    this.favSchoolSub = this.favoriteStore.favSchools.subscribe(
-          (favSchools: any) => {
-            this.favSchoolsList = this.getFavoriteSchoolList(favSchools);
-            console.log('  this.favSchoolsList',   this.favSchoolsList);
-          });
+  constructor(private favoriteStore: FavoriteStore) {}
 
+   ionViewWillEnter() {
+    // stores/subscribes to our favorite schools
+    console.log('LOG FROM CONSTRUCTOR');
+    this.favSchoolSub = this.favoriteStore.favSchools.subscribe(
+      (favSchools: any) => {
+        console.log('INSIDE OF SUBSCRIBE IN FAVORITE PAGE!!!');
+        this.favSchoolsList = this.getFavoriteSchoolList(favSchools);
+        console.log('  this.favSchoolsList',   this.favSchoolsList);
+      });
   }
+
 
    // unsubscribe from favorite schools
    ionViewDidLeave() {
@@ -43,21 +47,4 @@ export class FavouritePage {
     return [];
    }
 
-  // ionViewWillEnter() {
-  //   // stores our favorite schools
-  //   this.favSchoolSub = this.favoriteStore.favSchools.subscribe(
-  //     (favSchools: any) => {
-  //       this.favSchoolsList = this.getFavoriteSchoolList(favSchools);
-  //       console.log('  this.favSchoolsList',   this.favSchoolsList);
-  //     });
-  // }
-
-
-  // ionViewDidLeave() {
-  //   if (this.favSchoolSub && !this.favSchoolSub.closed) {
-  //     this.favSchoolSub.unsubscribe();
-  //   }
-  // }
-
- 
 }

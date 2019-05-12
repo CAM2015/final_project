@@ -55,6 +55,7 @@ export class AppComponent {
     this.fcm.onNotification().subscribe(
       (msg) => {
         this.toast.presentToast(msg.body);
+        console.log('here');
       });
   }
 
